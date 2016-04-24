@@ -1,0 +1,20 @@
+{
+  "name": "atm",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "start": "node ./bin/www"
+  },
+  "dependencies": {
+    "babel-core": "latest",
+    "babel-loader": "latest",
+    "babel-eslint": "latest",
+    "babel-preset-es2015": "latest",
+    "jscs": "latest",
+    "eslint": "latest",
+    "webpack": "latest"
+  },
+  "devDependencies": {
+    "babel-eslint": "^5.0.0-beta10"
+  }
+}

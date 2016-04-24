@@ -1,0 +1,85 @@
+<!doctype html>
+<html class="no-js" lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>An ATM</title>
+    <link rel="stylesheet" href="css/foundation.css" />
+    <script src="js/vendor/modernizr.js"></script>
+</head>
+<body>
+<div class="row">
+    <h1 class="small-12 columns">ATM Machine Machine.</h1>
+</div>
+
+<div class="row">
+    <div class="small-12 columns">
+        <div id="login-screen" class="small-12 columns">
+            <h3>Enter your card number and PIN</h3>
+            <p id="warning"></p>
+            <div class="row">
+                <div class="row">
+                    <div class="small-6 columns">
+                        <label>Card Number</label>
+                        <input type="text" id="card-number" placeholder="Card Number" size="3"/>
+                    </div>
+                    <div class="small-6 columns">
+                        <label>PIN Number Number</label>
+                        <input type="text" id="pin" placeholder="PIN" size="1"/>
+                    </div>
+                </div>
+                <div class="small round button" id="submit">
+                    Login
+                </div>
+            </div>
+        </div>
+        <div id="console" style="display: none;">
+            <h3 id="user-name">Welcome </h3>
+            <div class="small-6 columns">
+                <div class="panel">
+                    <div id="checking-number">Checking Account: </div>
+                    <hr>
+                    <div id="checking-balance">Balance: $</div>
+                </div>
+                <span id="deposit-checking" class="small round button">Deposit</span>
+                <span id="withdraw-checking" class="small round button">Withdraw</span>
+                <div id="checking-warning" style="display: none;">warning</div>
+                <div id="deposit-checking-input" style="display: none;">
+                    <label>How much would you like to deposit?</label>
+                    <input type="number" id="deposit-checking-value" placeholder="$$$$"/>
+                </div>
+                <div id="withdraw-checking-input" style="display: none;">
+                    <label>How much would you like to withdraw?</label>
+                    <input type="number" id="withdraw-checking-value" placeholder="$$$$"/>
+                </div>
+            </div>
+            <div class="small-6 columns">
+                <div class="panel">
+                    <div id="saving-number">Savings Account: </div>
+                    <hr>
+                    <div id="saving-balance">Balance: $</div>
+                </div>
+                <span id="deposit-saving" class="small round button">Deposit</span>
+                <span id="withdraw-saving" class="small round button">Withdraw</span>
+                <div id="saving-warning" style="display: none;">warning</div>
+                <div id="deposit-saving-input" style="display: none;">
+                    <label>How much would you like to deposit?</label>
+                    <input type="number" id="deposit-saving-value" placeholder="$$$$"/>
+                </div>
+                <div id="withdraw-saving-input" style="display: none;">
+                    <label>How much would you like to withdraw?</label>
+                    <input type="number" id="withdraw-saving-value" placeholder="$$$$"/>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="js/vendor/jquery.js"></script>
+<script src="js/foundation.min.js"></script>
+<script src="scripts/bundle.js"></script>
+<script>
+    $(document).foundation();
+</script>
+</body>
+</html>
