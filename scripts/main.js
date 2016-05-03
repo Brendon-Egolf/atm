@@ -2,18 +2,16 @@
  * Created by begolf123 on 4/22/16
  */
 
-import {FileReader} from "./FileReader";
-import {User} from "./User";
+import {FileReader} from "./FileReader.js";
+import {User} from "./User.js";
 
 'use strict';
 
 
 class main {
     constructor() {
-        console.log('Hello World!');
-
+        console.log('Hello World!!');
         document.getElementById('card-number').focus();
-
         document.getElementById('submit').addEventListener('click', function() {
             main.login(document.getElementById('card-number').value,
                 document.getElementById('pin').value);
@@ -55,6 +53,7 @@ class main {
                 for (let i = 0; i < fileData.length; i++) {
                     if (cardNumber == fileData[i][CARD_NUMBER]) {
                         //console.log('user ' + i);
+                        this.fileData = fileData;
                         userData = fileData[i];
                         //userData.forEach(function(value) {
                             //console.log(value);
@@ -68,7 +67,7 @@ class main {
                         //console.log('correct!');
                         userData.shift();
                         userData.shift();
-                        new User(userData);
+                        this.user = new User(userData);
                     } else {
                         //console.log('incorrect?');
                         document.getElementById('warning').innerHTML = 'Incorrect PIN';
@@ -83,6 +82,24 @@ class main {
             document.getElementById('warning').innerHTML = main.verifyCard(cardNumber) ? 'pin must be 1 digit long' :
              'Card number must be 3 digits long';
         }
+    }
+
+    static sendData() {
+        const request = new XMLHttpRequest();
+        const BUST_CACHE = '?' + new Date().getTime();
+        let userData = this.user.getUserData();
+
+        for (let i = 0; i < this.fileData.length; i++) {
+            if (userData[0] == this.fileData[i][3]) {
+                for (let j = 2; j < this.fileData[i].length; j++) {
+                    this.fileData[i][j] = userData[j - 2];
+                }
+            }
+        }
+
+        request.open('POST', BUST_CACHE, true);
+        request.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
+        request.send(this.fileData);
     }
 }
 

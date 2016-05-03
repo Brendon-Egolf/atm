@@ -121,6 +121,7 @@ export class User {
                         withdrawValue.value = '';
                         withdrawView.style.display = 'none';
                         that.setUserData();
+                        super.sendData();
                         warning.style.display = 'none';
                         warning.innerHtml = '';
                     } else {
@@ -140,5 +141,9 @@ export class User {
         document.getElementById('checking-balance').innerHTML = 'Balance: $' + this.userData[2];
         document.getElementById('saving-number').innerHTML = 'Savings Account: ' + this.userData[3];
         document.getElementById('saving-balance').innerHTML = 'Balance: $' + this.userData[4];
+    }
+
+    getUserData() {
+        return this.userData;
     }
 }
