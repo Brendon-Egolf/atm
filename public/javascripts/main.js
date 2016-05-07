@@ -1,3 +1,4 @@
+const VERSION = '2.5.1';
 /*
  * Created by begolf123 on 4/22/16
  */
@@ -7,10 +8,9 @@ import {User} from "./User";
 
 'use strict';
 
-
 class main {
     constructor() {
-        console.log('Hello World!');
+        console.log(VERSION);
 
         document.getElementById('card-number').focus();
 
@@ -22,8 +22,12 @@ class main {
         document.getElementById('card-number').addEventListener('keypress', function(e) {
             let key = e.which || e.keyCode;
             if (key === 13) { // 13 is enter
-                main.login(document.getElementById('card-number').value,
-                    document.getElementById('pin').value);
+                if (document.getElementById('pin').value) {
+                    main.login(document.getElementById('card-number').value,
+                        document.getElementById('pin').value);
+                } else {
+                    document.getElementById('pin').focus();
+                }
             }
         });
 
@@ -50,7 +54,7 @@ class main {
         const CARD_NUMBER = 0;
 
         if (main.verifyCard(cardNumber) && main.verifyPin(pinNumber)) {
-            FileReader.loadData('/atm/data/users.csv', function(fileData) {
+            FileReader.loadData(__dirname + 'data/users.csv', function(fileData) {
                 let userData = [];
                 for (let i = 0; i < fileData.length; i++) {
                     if (cardNumber == fileData[i][CARD_NUMBER]) {
@@ -62,12 +66,13 @@ class main {
                         break;
                     }
                 }
+                //console.log(userData[0]);
                 if (userData != null) {
                     const PIN = 1;
                     if (userData[PIN] == pinNumber) {
                         //console.log('correct!');
-                        userData.shift();
-                        userData.shift();
+                        //userData.shift();
+                        //userData.shift();
                         new User(userData);
                     } else {
                         //console.log('incorrect?');
@@ -81,7 +86,7 @@ class main {
         } else {
             //console.log('invalid entry');
             document.getElementById('warning').innerHTML = main.verifyCard(cardNumber) ? 'pin must be 1 digit long' :
-             'Card number must be 3 digits long';
+                'Card number must be 3 digits long';
         }
     }
 }

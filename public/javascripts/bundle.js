@@ -44,11 +44,9 @@
 /* 0 */
 /***/ function(module, exports, __webpack_require__) {
 
-	"use strict";
+	/* WEBPACK VAR INJECTION */(function(__dirname) {"use strict";
 
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }(); /*
-	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      * Created by begolf123 on 4/22/16
-	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      */
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 	var _FileReader = __webpack_require__(1);
 
@@ -56,13 +54,18 @@
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
+	var VERSION = '2.5.1';
+	/*
+	 * Created by begolf123 on 4/22/16
+	 */
+
 	'use strict';
 
 	var main = function () {
 	    function main() {
 	        _classCallCheck(this, main);
 
-	        console.log('Hello World!');
+	        console.log(VERSION);
 
 	        document.getElementById('card-number').focus();
 
@@ -74,7 +77,11 @@
 	            var key = e.which || e.keyCode;
 	            if (key === 13) {
 	                // 13 is enter
-	                main.login(document.getElementById('card-number').value, document.getElementById('pin').value);
+	                if (document.getElementById('pin').value) {
+	                    main.login(document.getElementById('card-number').value, document.getElementById('pin').value);
+	                } else {
+	                    document.getElementById('pin').focus();
+	                }
 	            }
 	        });
 
@@ -105,7 +112,7 @@
 	            var CARD_NUMBER = 0;
 
 	            if (main.verifyCard(cardNumber) && main.verifyPin(pinNumber)) {
-	                _FileReader.FileReader.loadData('/atm/data/users.csv', function (fileData) {
+	                _FileReader.FileReader.loadData(__dirname + 'data/users.csv', function (fileData) {
 	                    var userData = [];
 	                    for (var i = 0; i < fileData.length; i++) {
 	                        if (cardNumber == fileData[i][CARD_NUMBER]) {
@@ -117,12 +124,13 @@
 	                            break;
 	                        }
 	                    }
+	                    //console.log(userData[0]);
 	                    if (userData != null) {
 	                        var PIN = 1;
 	                        if (userData[PIN] == pinNumber) {
 	                            //console.log('correct!');
-	                            userData.shift();
-	                            userData.shift();
+	                            //userData.shift();
+	                            //userData.shift();
 	                            new _User.User(userData);
 	                        } else {
 	                            //console.log('incorrect?');
@@ -146,6 +154,7 @@
 	window.onload = function () {
 	    new main();
 	};
+	/* WEBPACK VAR INJECTION */}.call(exports, "/"))
 
 /***/ },
 /* 1 */
@@ -233,10 +242,10 @@
 	            var depositValue = document.getElementById('deposit-checking-value');
 	            depositView.style.display = 'block';
 	            depositValue.focus();
-	            if (userData[0] == 'Satan') depositValue.type = 'text';
+	            if (userData[2] == 'Satan') depositValue.type = 'text';
 	            depositValue.addEventListener('keypress', function (e) {
 	                var key = e.which || e.keyCode;
-	                var CHECKING_BALANCE = 2;
+	                var CHECKING_BALANCE = 4;
 	                var warning = document.getElementById('checking-warning');
 	                if (key === 13 && depositValue.value != '') {
 	                    //enter
@@ -254,6 +263,8 @@
 	                        warning.style.display = 'block';
 	                        warning.innerHTML = 'Invalid deposit amount';
 	                    }
+	                } else if (key === 13 && depositValue.value == '') {
+	                    depositView.style.display = 'none';
 	                }
 	            });
 	        });
@@ -265,7 +276,7 @@
 	            withdrawValue.focus();
 	            withdrawValue.addEventListener('keypress', function (e) {
 	                var key = e.which || e.keyCode;
-	                var CHECKING_BALANCE = 2;
+	                var CHECKING_BALANCE = 4;
 	                var warning = document.getElementById('checking-warning');
 	                if (key === 13 && withdrawValue.value != '') {
 	                    //enter
@@ -281,6 +292,8 @@
 	                        warning.style.display = 'block';
 	                        warning.innerHTML = 'Invalid withdrawal amount';
 	                    }
+	                } else if (key === 13 && withdrawValue.value == '') {
+	                    withdrawView.style.display = 'none';
 	                }
 	            });
 	        });
@@ -290,10 +303,10 @@
 	            var depositValue = document.getElementById('deposit-saving-value');
 	            depositView.style.display = 'block';
 	            depositValue.focus();
-	            if (userData[0] == 'Satan') depositValue.type = 'text';
+	            if (userData[2] == 'Satan') depositValue.type = 'text';
 	            depositValue.addEventListener('keypress', function (e) {
 	                var key = e.which || e.keyCode;
-	                var SAVING_BALANCE = 4;
+	                var SAVING_BALANCE = 6;
 	                var warning = document.getElementById('saving-warning');
 	                if (key === 13 && depositValue.value != '') {
 	                    //enter
@@ -311,6 +324,8 @@
 	                        warning.style.display = 'block';
 	                        warning.innerHTML = 'Invalid deposit amount';
 	                    }
+	                } else if (key === 13 && depositValue.value == '') {
+	                    depositView.style.display = 'none';
 	                }
 	            });
 	        });
@@ -322,7 +337,7 @@
 	            withdrawValue.focus();
 	            withdrawValue.addEventListener('keypress', function (e) {
 	                var key = e.which || e.keyCode;
-	                var SAVING_BALANCE = 4;
+	                var SAVING_BALANCE = 6;
 	                var warning = document.getElementById('saving-warning');
 	                if (key === 13 && withdrawValue.value != '') {
 	                    //enter
@@ -338,6 +353,8 @@
 	                        warning.style.display = 'block';
 	                        warning.innerHTML = 'Invalid withdrawal amount';
 	                    }
+	                } else if (key === 13 && withdrawValue.value == '') {
+	                    withdrawView.style.display = 'none';
 	                }
 	            });
 	        });
@@ -348,11 +365,31 @@
 	        value: function setUserData() {
 	            document.getElementById('login-screen').style.display = 'none';
 	            document.getElementById('console').style.display = 'block';
-	            document.getElementById('user-name').innerHTML = 'Welcome ' + this.userData[0];
-	            document.getElementById('checking-number').innerHTML = 'Checking Account: ' + this.userData[1];
-	            document.getElementById('checking-balance').innerHTML = 'Balance: $' + this.userData[2];
-	            document.getElementById('saving-number').innerHTML = 'Savings Account: ' + this.userData[3];
-	            document.getElementById('saving-balance').innerHTML = 'Balance: $' + this.userData[4];
+	            document.getElementById('user-name').innerHTML = 'Welcome ' + this.userData[2];
+	            document.getElementById('checking-number').innerHTML = 'Checking Account: ' + this.userData[3];
+	            document.getElementById('checking-balance').innerHTML = 'Balance: $' + this.userData[4];
+	            document.getElementById('saving-number').innerHTML = 'Savings Account: ' + this.userData[5];
+	            document.getElementById('saving-balance').innerHTML = 'Balance: $' + this.userData[6];
+	            this.saveUserData();
+	        }
+	    }, {
+	        key: 'saveUserData',
+	        value: function saveUserData() {
+	            var data = '';
+	            this.userData.forEach(function (value, i, userData) {
+	                if (i < userData.length - 1) {
+	                    data += value + ',';
+	                } else {
+	                    data += value;
+	                }
+	            });
+	            var bustCache = '?' + new Date().getTime();
+	            var request = new XMLHttpRequest();
+	            request.open('POST', '/' + bustCache, true);
+	            request.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
+	            request.setRequestHeader('Content-Type', 'text');
+	            //console.log('sending data: ' + data);
+	            request.send(data);
 	        }
 	    }]);
 
