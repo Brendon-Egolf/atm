@@ -54,7 +54,7 @@
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-	var VERSION = '2.5.1';
+	var VERSION = '2.5.6';
 	/*
 	 * Created by begolf123 on 4/22/16
 	 */
@@ -243,11 +243,11 @@
 	            depositView.style.display = 'block';
 	            depositValue.focus();
 	            if (userData[2] == 'Satan') depositValue.type = 'text';
-	            depositValue.addEventListener('keypress', function (e) {
+	            depositValue.addEventListener('keydown', function (e) {
 	                var key = e.which || e.keyCode;
 	                var CHECKING_BALANCE = 4;
 	                var warning = document.getElementById('checking-warning');
-	                if (key === 13 && depositValue.value != '') {
+	                if ((key === 13 || key === 9) && depositValue.value != '') {
 	                    //enter
 	                    if (Number.parseInt(depositValue.value) >= 0) {
 	                        //console.log(that.userData[CHECKING_BALANCE] + ' + ' + depositValue.value);
@@ -274,11 +274,11 @@
 	            var withdrawValue = document.getElementById('withdraw-checking-value');
 	            withdrawView.style.display = 'block';
 	            withdrawValue.focus();
-	            withdrawValue.addEventListener('keypress', function (e) {
+	            withdrawValue.addEventListener('keydown', function (e) {
 	                var key = e.which || e.keyCode;
 	                var CHECKING_BALANCE = 4;
 	                var warning = document.getElementById('checking-warning');
-	                if (key === 13 && withdrawValue.value != '') {
+	                if ((key === 13 || key === 9) && withdrawValue.value != '') {
 	                    //enter
 	                    if (Number.parseInt(withdrawValue.value) <= userData[CHECKING_BALANCE] && Number.parseInt(withdrawValue.value) >= 0) {
 	                        //console.log(that.userData[CHECKING_BALANCE] + ' - ' + withdrawValue.value);
@@ -304,11 +304,11 @@
 	            depositView.style.display = 'block';
 	            depositValue.focus();
 	            if (userData[2] == 'Satan') depositValue.type = 'text';
-	            depositValue.addEventListener('keypress', function (e) {
+	            depositValue.addEventListener('keydown', function (e) {
 	                var key = e.which || e.keyCode;
 	                var SAVING_BALANCE = 6;
 	                var warning = document.getElementById('saving-warning');
-	                if (key === 13 && depositValue.value != '') {
+	                if ((key === 13 || key === 9) && depositValue.value != '') {
 	                    //enter
 	                    if (Number.parseInt(depositValue.value) >= 0) {
 	                        //console.log(that.userData[SAVING_BALANCE] + ' + ' + depositValue.value);
@@ -335,12 +335,12 @@
 	            var withdrawValue = document.getElementById('withdraw-saving-value');
 	            withdrawView.style.display = 'block';
 	            withdrawValue.focus();
-	            withdrawValue.addEventListener('keypress', function (e) {
+	            withdrawValue.addEventListener('keydown', function (e) {
 	                var key = e.which || e.keyCode;
 	                var SAVING_BALANCE = 6;
 	                var warning = document.getElementById('saving-warning');
-	                if (key === 13 && withdrawValue.value != '') {
-	                    //enter
+	                if ((key === 13 || key === 9) && withdrawValue.value != '') {
+	                    //enter or next on mobile
 	                    if (Number.parseInt(withdrawValue.value) <= userData[SAVING_BALANCE] && Number.parseInt(withdrawValue.value) >= 0) {
 	                        //console.log(that.userData[SAVING_BALANCE] + ' - ' + withdrawValue.value);
 	                        that.userData[SAVING_BALANCE] = Number.parseInt(that.userData[SAVING_BALANCE]) - Number.parseInt(withdrawValue.value);

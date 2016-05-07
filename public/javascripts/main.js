@@ -1,4 +1,4 @@
-const VERSION = '2.5.1';
+const VERSION = '2.5.6';
 /*
  * Created by begolf123 on 4/22/16
  */

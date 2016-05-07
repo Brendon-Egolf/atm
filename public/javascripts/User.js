@@ -20,11 +20,11 @@ export class User {
             depositValue.focus();
             if (userData[2] == 'Satan')
                 depositValue.type = 'text';
-            depositValue.addEventListener('keypress', function(e) {
+            depositValue.addEventListener('keydown', function(e) {
                 let key = e.which || e.keyCode;
                 const CHECKING_BALANCE = 4;
                 let warning = document.getElementById('checking-warning');
-                if (key === 13 && depositValue.value != '') { //enter
+                if ((key === 13 || key === 9) && depositValue.value != '') { //enter
                     if (Number.parseInt(depositValue.value) >= 0) {
                         //console.log(that.userData[CHECKING_BALANCE] + ' + ' + depositValue.value);
                         that.userData[CHECKING_BALANCE] = Number.parseInt(that.userData[CHECKING_BALANCE])
@@ -51,11 +51,11 @@ export class User {
             let withdrawValue = document.getElementById('withdraw-checking-value');
             withdrawView.style.display = 'block';
             withdrawValue.focus();
-            withdrawValue.addEventListener('keypress', function(e) {
+            withdrawValue.addEventListener('keydown', function(e) {
                 let key = e.which || e.keyCode;
                 const CHECKING_BALANCE = 4;
                 let warning = document.getElementById('checking-warning');
-                if (key === 13 && withdrawValue.value != '') { //enter
+                if ((key === 13 || key === 9) && withdrawValue.value != '') { //enter
                     if (Number.parseInt(withdrawValue.value) <= userData[CHECKING_BALANCE] &&
                         Number.parseInt(withdrawValue.value) >= 0) {
                         //console.log(that.userData[CHECKING_BALANCE] + ' - ' + withdrawValue.value);
@@ -83,11 +83,11 @@ export class User {
             depositValue.focus();
             if (userData[2] == 'Satan')
                 depositValue.type = 'text';
-            depositValue.addEventListener('keypress', function(e) {
+            depositValue.addEventListener('keydown', function(e) {
                 let key = e.which || e.keyCode;
                 const SAVING_BALANCE = 6;
                 let warning = document.getElementById('saving-warning');
-                if (key === 13 && depositValue.value != '') { //enter
+                if ((key === 13 || key === 9) && depositValue.value != '') { //enter
                     if (Number.parseInt(depositValue.value) >= 0) {
                         //console.log(that.userData[SAVING_BALANCE] + ' + ' + depositValue.value);
                         that.userData[SAVING_BALANCE] = Number.parseInt(that.userData[SAVING_BALANCE])
@@ -114,11 +114,11 @@ export class User {
             let withdrawValue = document.getElementById('withdraw-saving-value');
             withdrawView.style.display = 'block';
             withdrawValue.focus();
-            withdrawValue.addEventListener('keypress', function(e) {
+            withdrawValue.addEventListener('keydown', function(e) {
                 let key = e.which || e.keyCode;
                 const SAVING_BALANCE = 6;
                 let warning = document.getElementById('saving-warning');
-                if (key === 13 && withdrawValue.value != '') { //enter
+                if ((key === 13 || key === 9) && withdrawValue.value != '') { //enter or next on mobile
                     if (Number.parseInt(withdrawValue.value) <= userData[SAVING_BALANCE] &&
                         Number.parseInt(withdrawValue.value) >= 0) {
                         //console.log(that.userData[SAVING_BALANCE] + ' - ' + withdrawValue.value);
