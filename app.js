@@ -44,6 +44,8 @@ class app {
                     //console.log('rendering ' + req.url.slice(1));
                 } else if (req.url.indexOf('/images/') >= 0) {
                     app.render(req.url.slice(1), 'image/jpeg', httpHandler, 'binary');
+                } else if (req.url == '/') {
+                    app.render('public/views/index.html', 'text/html', httpHandler, 'utf-8');
                 } else {
                     app.render('public/views/index.html', 'text/html', httpHandler, 'utf-8');
                 }
