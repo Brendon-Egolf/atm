@@ -11,7 +11,7 @@ class app {
 
     static loadServer() {
         const HTTP = require('http'),
-            PORT = process.env.PORT || 8080;
+            PORT = process.env.PORT || 8080,
             SERVER = HTTP.createServer(function (req, res) {
                 let httpHandler = function (err, str, contentType) {
                     //console.log("you can't handle the truth! " + req.url);
