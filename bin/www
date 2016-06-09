@@ -4,5 +4,5 @@
 
 "use strict";
 
-var APP = require('../app.js');
+var APP = require('../server.js');
 new APP();
